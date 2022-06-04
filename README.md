@@ -1,18 +1,18 @@
-# html-and-py
+# html_and_py
  A lightweight solution to generating HTML-formatted strings, in Python.
 
-Open source available on [GitHub](https://github.com/Whoeza/html-and-py) and 
-[PyPI](https://pypi.org/project/html-and-py/).
+Open source available on [GitHub](https://github.com/Whoeza/html_and_py) and 
+[PyPI](https://pypi.org/project/html_and_py/).
 
 ## Installation
 
 Install from pip:
 
-`py -m pip install html-and-py`
+`py -m pip install html_and_py`
 
 Update to the latest version from pip:
 
-`py -m pip install html-and-py --upgrade`
+`py -m pip install html_and_py --upgrade`
 
 Build from source by running this command from the package's folder:
 
@@ -21,4 +21,4 @@ Build from source by running this command from the package's folder:
 ## Community
 
 Open a new issue for support
-[here](https://github.com/Whoeza/html-and-py/issues)
+[here](https://github.com/Whoeza/html_and_py/issues)

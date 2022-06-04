@@ -1,4 +1,4 @@
-# html-and-py.py
+# html_and_py.py
 # todo Make this a module of its own. (Python package?) Make it exportable
 #  for use in the rest of the project. Upload it to the public repository of
 #  Python packages.
