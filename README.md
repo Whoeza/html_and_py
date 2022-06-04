@@ -18,6 +18,10 @@ Build from source by running this command from the package's folder:
 
 `py -m build`
 
+Uninstall from pip:
+
+`py -m pip uninstall html_and_py`
+
 ## Community
 
 Open a new issue for support
