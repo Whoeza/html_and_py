@@ -140,104 +140,106 @@ def update_html(*args: dict, **kwargs) -> [dict]:
 
 
 if __name__ == "__main__":
-    print("Build a test page. Can go top-down, as well as bottom-up.")
-    html_page = {
-        'tag': 'html',
-        'attributes': {'name': 'myName', 'value': 'myValue'},
-        'children': [],
-        'text': ""
-    }
-    html_page['children'].append({
-        'tag': 'head',
-        'attributes': {},
-        'children': [{
-            'tag': 'title',
-            'attributes': {},
+    dev_stage = False
+    if dev_stage:
+        print("Build a test page. Can go top-down, as well as bottom-up.")
+        html_page = {
+            'tag': 'html',
+            'attributes': {'name': 'myName', 'value': 'myValue'},
             'children': [],
-            'text': 0.1
-        }],
-        'text': ''
-    })
-    html_page['children'].append({
-        'tag': 'body',
-        'attributes': {},
-        'children': [{
-            'tag': 'p',
-            'attributes': {},
-            'children': [],
-            'text': "Hello World!"
-        }],
-        'text': 'This is the HTML body!'
-    })
-    print("HTML object described as a Python dict:", html_page)
-
-    ##
-    # Testing rendering a dictionary of nested HTML elements
-    ##
-    rendered_html = render_html(**html_page)
-    print(rendered_html)
-
-    ##
-    # Testing creating HTML elements from prototype with create_html
-    ##
-    print("HTML prototype:", HTML_PROTOTYPE)
-    html_div = {}
-    html_div.update(**HTML_PROTOTYPE)
-    html_div.update({
-        'tag': 'div'
-    })
-    print("  >>  does this make a DIV?", html_div)
-    html_div.update({})
-    print("  >>  does this not change anything?", html_div)
-    html_paragraph = create_html({'tag': 'p'})
-    print("  >>  is this a vanilla HTML with a <p> tag?", html_paragraph)
-    html_paragraph = create_html({
-        'tag': 'a',
-        'attributes': {
-            'href': '#'
+            'text': ""
         }
-    })
-    print("  >>  is this a vanilla HTML with a new <a> element?",
-          html_paragraph)
-    html_paragraph = create_html({'tag': 'p'})
-    print("  >>  is this back to vanilla HTML with a <p> tag?", html_paragraph)
-    html_paragraph = create_html(**{'text': 'What Happens Now?'})
-    print("  >>  is this a vanilla HTML with a <p> tag and updated text?",
-          html_paragraph)
+        html_page['children'].append({
+            'tag': 'head',
+            'attributes': {},
+            'children': [{
+                'tag': 'title',
+                'attributes': {},
+                'children': [],
+                'text': 0.1
+            }],
+            'text': ''
+        })
+        html_page['children'].append({
+            'tag': 'body',
+            'attributes': {},
+            'children': [{
+                'tag': 'p',
+                'attributes': {},
+                'children': [],
+                'text': "Hello World!"
+            }],
+            'text': 'This is the HTML body!'
+        })
+        print("HTML object described as a Python dict:", html_page)
 
-    # Testing updating HTML elements, in batches or individually with
-    # update_html
-    html_component_one = create_html({'tag': 'componentOne'})
-    html_component_two = create_html({'tag': 'componentTwo'})
+        ##
+        # Testing rendering a dictionary of nested HTML elements
+        ##
+        rendered_html = render_html(**html_page)
+        print(rendered_html)
 
-    html_component_one, html_component_two = update_html(
-        html_component_one, html_component_two,
-        **{}
-    )
-    print("  >> Did this leave components one and two unchanged?")
-    print("One (before)", create_html({'tag': 'componentOne'}))
-    print("One (after)", html_component_one)
-    print("Two (before)", create_html({'tag': 'componentTwo'}))
-    print("Two (after)", html_component_two)
+        ##
+        # Testing creating HTML elements from prototype with create_html
+        ##
+        print("HTML prototype:", HTML_PROTOTYPE)
+        html_div = {}
+        html_div.update(**HTML_PROTOTYPE)
+        html_div.update({
+            'tag': 'div'
+        })
+        print("  >>  does this make a DIV?", html_div)
+        html_div.update({})
+        print("  >>  does this not change anything?", html_div)
+        html_paragraph = create_html({'tag': 'p'})
+        print("  >>  is this a vanilla HTML with a <p> tag?", html_paragraph)
+        html_paragraph = create_html({
+            'tag': 'a',
+            'attributes': {
+                'href': '#'
+            }
+        })
+        print("  >>  is this a vanilla HTML with a new <a> element?",
+              html_paragraph)
+        html_paragraph = create_html({'tag': 'p'})
+        print("  >>  is this back to vanilla HTML with a <p> tag?", html_paragraph)
+        html_paragraph = create_html(**{'text': 'What Happens Now?'})
+        print("  >>  is this a vanilla HTML with a <p> tag and updated text?",
+              html_paragraph)
 
-    html_component_one, html_component_two = update_html(
-        html_component_one, html_component_two,
-        **HTML_PROTOTYPE
-    )
-    print("  >> Did this reset both components?")
-    print("One", html_component_one)
-    print("Two", html_component_two)
+        # Testing updating HTML elements, in batches or individually with
+        # update_html
+        html_component_one = create_html({'tag': 'componentOne'})
+        html_component_two = create_html({'tag': 'componentTwo'})
 
-    html_component_one = update_html(html_component_one, **{
-        'tag': 'componentOne'
-    })
-    print("  >> Did this bring back component one?")
-    print("One", html_component_one)
-    print("Two", html_component_two)
+        html_component_one, html_component_two = update_html(
+            html_component_one, html_component_two,
+            **{}
+        )
+        print("  >> Did this leave components one and two unchanged?")
+        print("One (before)", create_html({'tag': 'componentOne'}))
+        print("One (after)", html_component_one)
+        print("Two (before)", create_html({'tag': 'componentTwo'}))
+        print("Two (after)", html_component_two)
 
-    html_component_two = update_html(html_component_two, **{
-        'tag': 'componentTwo'
-    })
-    print("  >> Did this bring back component two?")
-    print("One", html_component_one)
-    print("Two", html_component_two)
+        html_component_one, html_component_two = update_html(
+            html_component_one, html_component_two,
+            **HTML_PROTOTYPE
+        )
+        print("  >> Did this reset both components?")
+        print("One", html_component_one)
+        print("Two", html_component_two)
+
+        html_component_one = update_html(html_component_one, **{
+            'tag': 'componentOne'
+        })
+        print("  >> Did this bring back component one?")
+        print("One", html_component_one)
+        print("Two", html_component_two)
+
+        html_component_two = update_html(html_component_two, **{
+            'tag': 'componentTwo'
+        })
+        print("  >> Did this bring back component two?")
+        print("One", html_component_one)
+        print("Two", html_component_two)
