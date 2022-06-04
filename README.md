@@ -14,13 +14,16 @@ Update to the latest version from pip:
 
 `py -m pip install html_and_py --upgrade`
 
-Build from source by running this command from the package's folder:
-
-`py -m build`
-
 Uninstall from pip:
 
 `py -m pip uninstall html_and_py`
+
+### Building from sources
+
+It is possible to build from sources by running this command from the 
+package directory in your filesystem:
+
+`py -m build`
 
 ## Community
 
