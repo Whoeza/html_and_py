@@ -18,11 +18,37 @@ HTML_VOID_ELEMENTS = [
     'link', 'meta', 'param', 'source', 'track', 'wbr']
 
 
-# Auxiliary function
+# Auxiliary functions
+def init_doctype(doctype: str) -> str:
+    return "<!doctype %s>\n" % doctype
+
+
 def is_self_enclosing(component_name: str) -> bool:
     if component_name.lower() in HTML_VOID_ELEMENTS:
         return True
     return False
+
+
+# Creating an HTML element using the HTML_PROTOTYPE, a passed prototype,
+# and an optional additional setting
+def create_html(*args: dict, **kwargs) -> dict:
+    # print("create_html: args = ", args)
+    # print("create_html: unpacked args = ", *args)
+    # print("create_html: kwargs = ", kwargs)
+
+    new_from_prototype = {}
+    # Creating from the vanilla HTML_PROTOTYPE
+    new_from_prototype.update(**HTML_PROTOTYPE)
+
+    if len(args):
+        # Can instantiate a clone from an existing HTML element
+        new_from_prototype.update(**args[0])
+
+    # Additionally, can override specific values if they are passed in kwargs
+    if kwargs:
+        new_from_prototype.update(**kwargs)
+
+    return new_from_prototype
 
 
 # Rendering Python dictionaries describing HTML objects into strings,
@@ -81,7 +107,8 @@ def render_html(*args: dict, **kwargs) -> str:
     for content in contents:
         # contents is a list of strings, representing HTML elements and/or text
         # nodes
-        for line in content.splitlines():
+        # fixed https://github.com/Whoeza/html_and_py/issues/6
+        for line in str(content).splitlines():
             indented_line = indent_spaces + line + "\n"
             indented_content += indented_line
 
@@ -112,28 +139,6 @@ def update_html(*args: dict, **kwargs) -> [dict]:
     return html_objects
 
 
-# Creating an HTML element using the HTML_PROTOTYPE, a passed prototype,
-# and an optional additional setting
-def create_html(*args: dict, **kwargs) -> dict:
-    # print("create_html: args = ", args)
-    # print("create_html: unpacked args = ", *args)
-    # print("create_html: kwargs = ", kwargs)
-
-    new_from_prototype = {}
-    # Creating from the vanilla HTML_PROTOTYPE
-    new_from_prototype.update(**HTML_PROTOTYPE)
-
-    if len(args):
-        # Can instantiate a clone from an existing HTML element
-        new_from_prototype.update(**args[0])
-
-    # Additionally, can override specific values if they are passed in kwargs
-    if kwargs:
-        new_from_prototype.update(**kwargs)
-
-    return new_from_prototype
-
-
 if __name__ == "__main__":
     print("Build a test page. Can go top-down, as well as bottom-up.")
     html_page = {
@@ -149,7 +154,7 @@ if __name__ == "__main__":
             'tag': 'title',
             'attributes': {},
             'children': [],
-            'text': 'The Title Goes Here!'
+            'text': 0.1
         }],
         'text': ''
     })
