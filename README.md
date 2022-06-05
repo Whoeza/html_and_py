@@ -27,5 +27,4 @@ package directory in your filesystem:
 
 ## Community
 
-Open a new issue for support
-[here](https://github.com/Whoeza/html_and_py/issues)
+[Open a new issue](https://github.com/Whoeza/html_and_py/issues) for support

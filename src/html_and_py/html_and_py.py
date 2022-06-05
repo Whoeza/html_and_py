@@ -140,8 +140,8 @@ def update_html(*args: dict, **kwargs) -> [dict]:
 
 
 if __name__ == "__main__":
-    dev_stage = False
-    if dev_stage:
+    DEV_STAGE = False
+    if DEV_STAGE:
         print("Build a test page. Can go top-down, as well as bottom-up.")
         html_page = {
             'tag': 'html',
